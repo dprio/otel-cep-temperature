@@ -6,7 +6,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient"
+	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/client"
 )
 
 var (
@@ -21,12 +21,12 @@ type (
 	}
 
 	weatherAPIClient struct {
-		httpClient httpclient.HttpClient
+		httpClient client.HttpClient
 		basePath   string
 	}
 )
 
-func New(httpClient httpclient.HttpClient) Client {
+func New(httpClient client.HttpClient) Client {
 	basePath := "https://api.weatherapi.com/v1"
 
 	return &weatherAPIClient{

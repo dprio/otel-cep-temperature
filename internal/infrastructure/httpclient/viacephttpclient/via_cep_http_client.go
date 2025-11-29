@@ -6,7 +6,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient"
+	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/client"
 )
 
 var (
@@ -20,11 +20,11 @@ type Client interface {
 }
 
 type viacepClient struct {
-	httpClient httpclient.HttpClient
+	httpClient client.HttpClient
 	basePath   string
 }
 
-func NewClient(httpClient httpclient.HttpClient) Client {
+func New(httpClient client.HttpClient) Client {
 	basePath := "https://viacep.com.br/ws/"
 
 	return &viacepClient{
