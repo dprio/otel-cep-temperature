@@ -31,3 +31,6 @@ go.work.sum
 # .idea/
 .vscode/
 cmd/__debug_bin2641873962
+
+google-cloud-sdk/
+google-cloud-cli-darwin-arm.tar.gz
