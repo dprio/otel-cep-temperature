@@ -8,6 +8,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o cep-tempe
 FROM scratch
 WORKDIR /app
 COPY --from=build /app/cep-temperature .
+COPY --from=build /app/config ./config
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 EXPOSE 8080
 CMD ["./cep-temperature"]
