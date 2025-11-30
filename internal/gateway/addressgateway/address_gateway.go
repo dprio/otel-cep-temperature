@@ -2,6 +2,7 @@ package addressgateway
 
 import (
 	"context"
+	"strings"
 
 	"github.com/dprio/cep-temperature/internal/domain/address"
 )
@@ -22,5 +23,5 @@ func (g *addressgateway) GetAddressByZipCode(ctx context.Context, zipCode addres
 		return nil, err
 	}
 
-	return address.New(resp.ZipCode, resp.City)
+	return address.New(strings.ReplaceAll(resp.ZipCode, "-", ""), resp.City)
 }

@@ -9,7 +9,7 @@ type UseCases struct {
 	GetTemperatureByZipCodeUseCase gettemperaturebyzipcode.UseCase
 }
 
-func New(gateways gateway.Gateways) *UseCases {
+func New(gateways *gateway.Gateways) *UseCases {
 	return &UseCases{
 		GetTemperatureByZipCodeUseCase: gettemperaturebyzipcode.New(gateways.AddressGateway, gateways.WeatherGateway),
 	}

@@ -44,6 +44,7 @@ func (c *weatherAPIClient) GetCityWeatherInformation(ctx context.Context, city s
 
 	q := req.URL.Query()
 	q.Add("q", city)
+	q.Add("key", "9a11b5e85eea44169b9223804252611")
 
 	req.URL.RawQuery = q.Encode()
 
