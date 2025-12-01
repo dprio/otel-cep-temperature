@@ -36,6 +36,11 @@ func TestExecute(t *testing.T) {
 			},
 		}
 
+		expectedOut := &Output{
+			Address: address,
+			Weather: weather,
+		}
+
 		mockViaCEPGateway.EXPECT().
 			GetAddressByZipCode(mock.Anything, mock.Anything).
 			Return(&address, nil)
@@ -49,7 +54,7 @@ func TestExecute(t *testing.T) {
 
 		//then
 		assert.NoError(t, err)
-		assert.Equal(t, weather, *resp)
+		assert.Equal(t, expectedOut, resp)
 	})
 
 	t.Run("should execute with error when zip-code is not numeric", func(t *testing.T) {

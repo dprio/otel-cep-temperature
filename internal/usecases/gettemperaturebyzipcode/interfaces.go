@@ -17,6 +17,6 @@ type (
 	}
 
 	UseCase interface {
-		Execute(ctx context.Context, zipCode string) (*weather.Weather, error)
+		Execute(ctx context.Context, zipCode string) (*Output, error)
 	}
 )

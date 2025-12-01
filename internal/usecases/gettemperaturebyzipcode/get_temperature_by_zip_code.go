@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/dprio/otel-cep-temperature/internal/domain/address"
-	"github.com/dprio/otel-cep-temperature/internal/domain/weather"
 )
 
 type useCase struct {
@@ -20,7 +19,7 @@ func New(viaCEPGateway ViaCEPGateway, weatWeatherAPIGateway WeatherAPIGateway) U
 	}
 }
 
-func (u *useCase) Execute(ctx context.Context, zipCode string) (*weather.Weather, error) {
+func (u *useCase) Execute(ctx context.Context, zipCode string) (*Output, error) {
 	fmt.Printf("Executing GetTemperatureByZipCodeUseCase. [zipCode: %s]\n", zipCode)
 	zc, err := address.NewZipCode(zipCode)
 	if err != nil {
@@ -32,5 +31,13 @@ func (u *useCase) Execute(ctx context.Context, zipCode string) (*weather.Weather
 		return nil, err
 	}
 
-	return u.weatherAPIGateway.GetWeatherByCity(ctx, addr.City)
+	wt, err := u.weatherAPIGateway.GetWeatherByCity(ctx, addr.City)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Output{
+		Address: *addr,
+		Weather: *wt,
+	}, nil
 }
