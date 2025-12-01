@@ -1,8 +1,8 @@
 package usecases
 
 import (
-	"github.com/dprio/cep-temperature/internal/gateway"
-	"github.com/dprio/cep-temperature/internal/usecases/gettemperaturebyzipcode"
+	"github.com/dprio/otel-cep-temperature/internal/gateway"
+	"github.com/dprio/otel-cep-temperature/internal/usecases/gettemperaturebyzipcode"
 )
 
 type UseCases struct {

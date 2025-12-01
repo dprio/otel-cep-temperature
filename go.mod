@@ -1,4 +1,4 @@
-module github.com/dprio/cep-temperature
+module github.com/dprio/otel-cep-temperature
 
 go 1.25.4
 

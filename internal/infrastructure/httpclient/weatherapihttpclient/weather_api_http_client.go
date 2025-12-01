@@ -6,7 +6,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/client"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient/client"
 )
 
 var (

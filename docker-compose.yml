@@ -1,9 +1,9 @@
 services:
-  app:
+  app-cep-temp-orch:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: cep-temperature
+      dockerfile: Dockerfile.CepTempOrch
+    container_name: cep-temp-orch
     restart: always
     ports:
       - 8080:8080 

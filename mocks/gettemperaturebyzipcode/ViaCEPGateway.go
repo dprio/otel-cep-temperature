@@ -7,7 +7,7 @@ package gettemperaturebyzipcode
 import (
 	"context"
 
-	"github.com/dprio/cep-temperature/internal/domain/address"
+	"github.com/dprio/otel-cep-temperature/internal/domain/address"
 	mock "github.com/stretchr/testify/mock"
 )
 

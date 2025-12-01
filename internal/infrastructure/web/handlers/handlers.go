@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/dprio/cep-temperature/internal/infrastructure/web/handlers/weatherhandler"
-	"github.com/dprio/cep-temperature/internal/usecases"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/web/handlers/weatherhandler"
+	"github.com/dprio/otel-cep-temperature/internal/usecases"
 )
 
 type Handlers struct {

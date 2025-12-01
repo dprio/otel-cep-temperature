@@ -3,8 +3,8 @@ package weathergateway
 import (
 	"context"
 
-	"github.com/dprio/cep-temperature/internal/domain/weather"
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/weatherapihttpclient"
+	"github.com/dprio/otel-cep-temperature/internal/domain/weather"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient/weatherapihttpclient"
 )
 
 type (

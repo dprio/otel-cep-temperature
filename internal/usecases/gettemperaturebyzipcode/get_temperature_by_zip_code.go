@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/dprio/cep-temperature/internal/domain/address"
-	"github.com/dprio/cep-temperature/internal/domain/weather"
+	"github.com/dprio/otel-cep-temperature/internal/domain/address"
+	"github.com/dprio/otel-cep-temperature/internal/domain/weather"
 )
 
 type useCase struct {

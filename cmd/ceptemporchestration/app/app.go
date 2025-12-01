@@ -1,12 +1,12 @@
 package app
 
 import (
-	"github.com/dprio/cep-temperature/internal/gateway"
-	"github.com/dprio/cep-temperature/internal/infrastructure/config"
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient"
-	"github.com/dprio/cep-temperature/internal/infrastructure/web/handlers"
-	"github.com/dprio/cep-temperature/internal/infrastructure/web/webserver"
-	"github.com/dprio/cep-temperature/internal/usecases"
+	"github.com/dprio/otel-cep-temperature/internal/gateway"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/config"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/web/handlers"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/web/webserver"
+	"github.com/dprio/otel-cep-temperature/internal/usecases"
 )
 
 type App struct {

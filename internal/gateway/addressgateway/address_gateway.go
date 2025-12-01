@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/dprio/cep-temperature/internal/domain/address"
+	"github.com/dprio/otel-cep-temperature/internal/domain/address"
 )
 
 type addressgateway struct {

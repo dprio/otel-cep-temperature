@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/dprio/cep-temperature/internal/usecases/gettemperaturebyzipcode"
+	"github.com/dprio/otel-cep-temperature/internal/usecases/gettemperaturebyzipcode"
 )
 
 type WeatherHandler struct {

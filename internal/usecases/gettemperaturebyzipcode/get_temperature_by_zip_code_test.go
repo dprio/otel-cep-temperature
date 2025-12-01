@@ -8,9 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/dprio/cep-temperature/internal/domain/address"
-	"github.com/dprio/cep-temperature/internal/domain/weather"
-	"github.com/dprio/cep-temperature/mocks/gettemperaturebyzipcode"
+	"github.com/dprio/otel-cep-temperature/internal/domain/address"
+	"github.com/dprio/otel-cep-temperature/internal/domain/weather"
+	"github.com/dprio/otel-cep-temperature/mocks/gettemperaturebyzipcode"
 )
 
 func TestExecute(t *testing.T) {

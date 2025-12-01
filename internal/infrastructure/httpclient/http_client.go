@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/viacephttpclient"
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient/weatherapihttpclient"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient/viacephttpclient"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient/weatherapihttpclient"
 )
 
 type HTTPClients struct {

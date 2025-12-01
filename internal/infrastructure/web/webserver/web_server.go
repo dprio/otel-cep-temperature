@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dprio/cep-temperature/internal/infrastructure/config"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/config"
 	"github.com/go-chi/chi/v5"
 )
 

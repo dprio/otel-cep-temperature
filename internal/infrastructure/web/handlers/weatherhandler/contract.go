@@ -1,6 +1,6 @@
 package weatherhandler
 
-import "github.com/dprio/cep-temperature/internal/domain/weather"
+import "github.com/dprio/otel-cep-temperature/internal/domain/weather"
 
 type Response struct {
 	CelsiusTemp       float64 `json:"temp_c"`

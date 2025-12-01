@@ -1,9 +1,9 @@
 package gateway
 
 import (
-	"github.com/dprio/cep-temperature/internal/gateway/addressgateway"
-	weathergateway "github.com/dprio/cep-temperature/internal/gateway/weatherGateway"
-	"github.com/dprio/cep-temperature/internal/infrastructure/httpclient"
+	"github.com/dprio/otel-cep-temperature/internal/gateway/addressgateway"
+	weathergateway "github.com/dprio/otel-cep-temperature/internal/gateway/weatherGateway"
+	"github.com/dprio/otel-cep-temperature/internal/infrastructure/httpclient"
 )
 
 type Gateways struct {

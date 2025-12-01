@@ -1,6 +1,6 @@
 package main
 
-import "github.com/dprio/cep-temperature/cmd/app"
+import "github.com/dprio/otel-cep-temperature/cmd/ceptemporchestration/app"
 
 func main() {
 	app := app.New()
