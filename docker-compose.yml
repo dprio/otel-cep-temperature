@@ -2,10 +2,10 @@ services:
   app-cep-temp-orch:
     build:
       context: .
-      dockerfile: Dockerfile.CepTempOrch
+      dockerfile: Dockerfile.Orchestrator
     container_name: cep-temp-orch
     restart: always
     ports:
       - 8080:8080 
     volumes:
-      - ./config:/app/config
+      - ./orchestrator/config:/app/config
