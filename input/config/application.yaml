@@ -1,0 +1,9 @@
+web:
+  port: 8080
+
+http:
+  client:
+    via-cep:
+      base-path:
+    weather-api:
+      base-path: 

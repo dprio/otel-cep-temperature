@@ -9,3 +9,14 @@ services:
       - 8080:8080 
     volumes:
       - ./orchestrator/config:/app/config
+  
+  app-cep-input:
+    build:
+      context: .
+      dockerfile: Dockerfile.Input
+    container_name: cep-input
+    restart: always
+    ports:
+      - 8090:8080
+    volumes:
+      - ./input/config:/app/config

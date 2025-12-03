@@ -1,0 +1,14 @@
+FROM golang:1.25 AS build
+WORKDIR /app
+COPY ./input/go.mod ./input/go.sum ./
+RUN go mod download
+COPY ./input .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o cep-input ./cmd
+
+FROM scratch
+WORKDIR /app
+COPY --from=build /app/cep-input .
+COPY --from=build /app/config ./config
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+EXPOSE 8080
+CMD ["./cep-input"]

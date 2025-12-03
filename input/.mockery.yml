@@ -1,0 +1,18 @@
+all: false
+dir: 'mocks'
+filename: '{{.SrcPackageName}}/{{.InterfaceName}}.go'
+force-file-write: true
+formatter: goimports
+include-auto-generated: false
+log-level: info
+structname: '{{.Mock}}{{.InterfaceName}}'
+pkgname: '{{.SrcPackageName}}'
+recursive: false
+require-template-schema-exists: true
+template: testify
+template-schema: '{{.Template}}.schema.json'
+packages:
+  github.com/dprio/cep-temperature/internal/usecases/gettemperaturebyzipcode:
+    interfaces:
+      ViaCEPGateway:
+      WeatherAPIGateway:
