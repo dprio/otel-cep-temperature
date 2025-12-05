@@ -7,6 +7,8 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/httpclient/client"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/propagation"
 )
 
 var (
@@ -41,6 +43,8 @@ func (c *weatherAPIClient) GetCityWeatherInformation(ctx context.Context, cep st
 	if err != nil {
 		return nil, ErrCreatingRequest
 	}
+
+	otel.GetTextMapPropagator().Inject(ctx, propagation.HeaderCarrier(req.Header))
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
