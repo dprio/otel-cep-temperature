@@ -2,7 +2,6 @@ package app
 
 import (
 	"context"
-	"errors"
 	"os"
 	"os/signal"
 
@@ -46,18 +45,13 @@ func createWebServer(cfg *config.Config, hdls *handlers.Handlers) *webserver.Web
 }
 
 func (a *App) Start() error {
-	// Handle SIGINT (CTRL+C) gracefully.
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
 
-	otelShutdown, err := opentelemetry.SetupOTelSDK(ctx)
-	if err != nil {
+	if err := opentelemetry.Init(ctx, "cep-temperature-input"); err != nil {
 		panic(err)
 	}
-
-	defer func() {
-		err = errors.Join(err, otelShutdown(context.Background()))
-	}()
+	defer opentelemetry.Shutdown(context.Background())
 
 	return a.webServer.Start()
 }
