@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/orchestrator/internal/infrastructure/httpclient/client"
+	"github.com/dprio/otel-cep-temperature/orchestrator/pkg/opentelemetry"
 )
 
 var (
@@ -34,6 +35,9 @@ func New(httpClient client.HttpClient) Client {
 }
 
 func (c *viacepClient) GetAddress(ctx context.Context, cep string) (*Response, error) {
+	ctx, span := opentelemetry.StartSpan(ctx, "ViaCEPClient.GetAddress")
+	defer span.End()
+
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.basePath+cep+"/json/", nil)
 	if err != nil {
 		return nil, ErrCreatingRequest

@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/input/internal/usecases/gettemperaturebyzipcode"
+	"github.com/dprio/otel-cep-temperature/input/pkg/opentelemetry"
+	"go.opentelemetry.io/otel/attribute"
 )
 
 type WeatherHandler struct {
@@ -20,6 +22,9 @@ func New(getTemperatureByZipCodeUseCase gettemperaturebyzipcode.UseCase) *Weathe
 func (h *WeatherHandler) GetLocationTemperature(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
+	ctx, span := opentelemetry.StartSpan(ctx, "WeatherHandler.GetLocationTemperature")
+	defer span.End()
+
 	println("Chamando o trem !")
 
 	var req Request
@@ -28,6 +33,8 @@ func (h *WeatherHandler) GetLocationTemperature(w http.ResponseWriter, r *http.R
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	span.SetAttributes(attribute.String("cep", req.ZipCode))
 
 	output, err := h.getTemperatureByZipCodeUseCase.Execute(ctx, req.ZipCode)
 	if err != nil {

@@ -7,6 +7,8 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/orchestrator/internal/infrastructure/httpclient/client"
+	"github.com/dprio/otel-cep-temperature/orchestrator/pkg/opentelemetry"
+	"go.opentelemetry.io/otel/attribute"
 )
 
 var (
@@ -36,6 +38,9 @@ func New(httpClient client.HttpClient) Client {
 }
 
 func (c *weatherAPIClient) GetCityWeatherInformation(ctx context.Context, city string) (*Response, error) {
+	ctx, span := opentelemetry.StartSpan(ctx, "WeatherAPIClient.GetCityWeatherInformation")
+	defer span.End()
+	span.SetAttributes(attribute.String("city", city))
 
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.basePath+"/current.json", nil)
 	if err != nil {
