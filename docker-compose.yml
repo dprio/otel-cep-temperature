@@ -20,3 +20,9 @@ services:
       - 8090:8080
     volumes:
       - ./input/config:/app/config
+      
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
