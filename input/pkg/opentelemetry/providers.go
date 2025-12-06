@@ -5,7 +5,7 @@ import (
 
 	"go.opentelemetry.io/otel/exporters/stdout/stdoutlog"
 	"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric"
-	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
+	"go.opentelemetry.io/otel/exporters/zipkin"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/log"
 	"go.opentelemetry.io/otel/sdk/metric"
@@ -20,13 +20,15 @@ func newPropagator() propagation.TextMapPropagator {
 }
 
 func newTracerProvider() (*sdktrace.TracerProvider, error) {
-	traceExporter, err := stdouttrace.New(stdouttrace.WithPrettyPrint())
+	exporter, err := zipkin.New(
+		"http://zipkin:9411/api/v2/spans",
+	)
 	if err != nil {
 		return nil, err
 	}
 
 	return sdktrace.NewTracerProvider(
-		sdktrace.WithBatcher(traceExporter, sdktrace.WithBatchTimeout(time.Second)),
+		sdktrace.WithBatcher(exporter, sdktrace.WithBatchTimeout(time.Second)),
 	), nil
 }
 

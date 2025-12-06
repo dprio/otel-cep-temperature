@@ -20,7 +20,7 @@ var (
 func Init(ctx context.Context, serviceName string) error {
 	once.Do(func() {
 		var shutdown func(context.Context) error
-		shutdown, setupErr = setupOTelSDK(ctx)
+		shutdown, setupErr = setupOTelSDK(ctx, serviceName)
 		if setupErr != nil {
 			return
 		}

@@ -9,7 +9,7 @@ import (
 )
 
 // setupOTelSDK bootstraps the entire OpenTelemetry pipeline.
-func setupOTelSDK(ctx context.Context) (func(context.Context) error, error) {
+func setupOTelSDK(ctx context.Context, serviceName string) (func(context.Context) error, error) {
 	var shutdownFuncs []func(context.Context) error
 	var err error
 
@@ -31,7 +31,7 @@ func setupOTelSDK(ctx context.Context) (func(context.Context) error, error) {
 	otel.SetTextMapPropagator(prop)
 
 	// Tracing
-	tracerProvider, err := newTracerProvider()
+	tracerProvider, err := newTracerProvider(serviceName)
 	if err != nil {
 		handleErr(err)
 		return shutdown, err
