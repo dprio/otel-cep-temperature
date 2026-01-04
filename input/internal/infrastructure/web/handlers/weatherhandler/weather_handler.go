@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/input/internal/usecases/gettemperaturebyzipcode"
-	"github.com/dprio/otel-cep-temperature/orchestrator/pkg/opentelemetry"
+	"github.com/dprio/otel-cep-temperature/input/pkg/opentelemetry"
 	"go.opentelemetry.io/otel/attribute"
 )
 

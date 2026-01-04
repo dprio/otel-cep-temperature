@@ -11,7 +11,7 @@ import (
 	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/web/handlers"
 	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/web/webserver"
 	"github.com/dprio/otel-cep-temperature/input/internal/usecases"
-	"github.com/dprio/otel-cep-temperature/orchestrator/pkg/opentelemetry"
+	"github.com/dprio/otel-cep-temperature/input/pkg/opentelemetry"
 )
 
 type App struct {

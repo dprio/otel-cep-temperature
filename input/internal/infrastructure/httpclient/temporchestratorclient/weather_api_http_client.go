@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/httpclient/client"
-	"github.com/dprio/otel-cep-temperature/orchestrator/pkg/opentelemetry"
+	"github.com/dprio/otel-cep-temperature/input/pkg/opentelemetry"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 )
