@@ -2,8 +2,10 @@ package weatherhandler
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
+	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/httpclient/temporchestratorclient"
 	"github.com/dprio/otel-cep-temperature/input/internal/usecases/gettemperaturebyzipcode"
 	"github.com/dprio/otel-cep-temperature/input/pkg/opentelemetry"
 	"go.opentelemetry.io/otel/attribute"
@@ -38,7 +40,12 @@ func (h *WeatherHandler) GetLocationTemperature(w http.ResponseWriter, r *http.R
 
 	output, err := h.getTemperatureByZipCodeUseCase.Execute(ctx, req.ZipCode)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		status := http.StatusInternalServerError
+		if errors.Is(err, temporchestratorclient.ErrNotFound) {
+			status = http.StatusNotFound
+		}
+
+		http.Error(w, err.Error(), status)
 		return
 	}
 

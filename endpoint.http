@@ -8,5 +8,25 @@ Content-Type: application/json
 
 ### Chamando serviço B (Orquestração)
 
-GET http://localhost:8080/addresses/90035150/weather/temperature
+GET http://localhost:8080/addresses/09010050/weather/temperature
 Content-Type: application/json
+
+
+
+--------------------------------------------------------------------
+
+### Chamando serviço A (Input) - Not Found
+POST http://localhost:8090/addresses/weather
+Content-Type: application/json
+
+{
+    "cep": "00000000"
+}
+
+### Chamando serviço A (Input) - Invalid CEP (8 digits)
+POST http://localhost:8090/addresses/weather
+Content-Type: application/json
+
+{
+    "cep": "123456789"
+}

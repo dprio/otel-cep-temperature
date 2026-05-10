@@ -14,6 +14,7 @@ var (
 	ErrMakingRequestViaCEPAPI = errors.New("error making request to ViaCEP API")
 	ErrViaCEPAPI              = errors.New("ViaCEPAPI returned an error")
 	ErrCreatingRequest        = errors.New("error creating request to ViaCEPAPI")
+	ErrViaCEPNotFound         = errors.New("CEP not found")
 )
 
 type Client interface {
@@ -55,6 +56,10 @@ func (c *viacepClient) GetAddress(ctx context.Context, cep string) (*Response, e
 	var response Response
 	if err = json.NewDecoder(resp.Body).Decode(&response); err != nil {
 		return nil, err
+	}
+
+	if response.isNotFound() {
+		return nil, ErrViaCEPNotFound
 	}
 
 	return &response, nil

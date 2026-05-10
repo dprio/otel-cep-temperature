@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"io"
 	"net/http"
 
 	"github.com/dprio/otel-cep-temperature/input/internal/infrastructure/httpclient/client"
@@ -14,6 +16,7 @@ import (
 
 var (
 	ErrMakingRequestOrchestratorAPI = errors.New("error making request to Orchestrator")
+	ErrNotFound                     = errors.New("cep not found")
 	ErrOrchestratorAPI              = errors.New("orchestrator API returned an error")
 	ErrCreatingRequest              = errors.New("error creating request to  Orchestrator API")
 )
@@ -54,8 +57,13 @@ func (c *weatherAPIClient) GetCityWeatherInformation(ctx context.Context, cep st
 		return nil, err
 	}
 
+	if resp.StatusCode == http.StatusNotFound {
+		return nil, ErrNotFound
+	}
+
 	if resp.StatusCode != http.StatusOK {
-		return nil, ErrOrchestratorAPI
+		b, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("%s: %s", ErrOrchestratorAPI.Error(), string(b))
 	}
 
 	var response Response
