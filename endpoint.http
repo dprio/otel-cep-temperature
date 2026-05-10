@@ -1,0 +1,12 @@
+### Chamando serviço A (Input)
+POST http://localhost:8090/addresses/weather
+Content-Type: application/json
+
+{
+    "cep": "04303001"
+}
+
+### Chamando serviço B (Orquestração)
+
+GET http://localhost:8080/addresses/90035150/weather/temperature
+Content-Type: application/json

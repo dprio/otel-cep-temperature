@@ -11,8 +11,9 @@ type (
 
 func New(city string, c, f, k float64) *Weather {
 	return &Weather{
-		C: c,
-		F: f,
-		K: k,
+		City: city,
+		C:    c,
+		F:    f,
+		K:    k,
 	}
 }
