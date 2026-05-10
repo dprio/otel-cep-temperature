@@ -10,6 +10,8 @@ Este projeto é uma aplicação simples que possibilita buscar a temperatura de 
 
 `docker-compose up`
 
-## Aplicação rodando no Cloud Run
+Exemplo de chamadas à API podem ser encontrados em [endpoint.http](https://github.com/dprio/otel-cep-temperature/blob/main/endpoint.http)
 
-`https://cep-temperature-hlqhi7apvq-uc.a.run.app/addresses/{cep}/weather/temperature`
+## Verificando traces no Zipkin
+
+Acessar [página do Zipkin](http://localhost:9411/zipkin/?lookback=15m&endTs=1778438236306&limit=10)
