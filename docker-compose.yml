@@ -1,4 +1,22 @@
-services:
+services:    
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+
+  otel-collector:
+    image:  otel/opentelemetry-collector:latest
+    restart: always
+    command: ["--config=./etc/otel-collector-config.yml"]
+    volumes:
+      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+    ports:
+      - "4317:4317"
+      - "8888:8888"
+    depends_on:
+      - zipkin
+
   app-cep-temp-orch:
     build:
       context: .
@@ -9,6 +27,8 @@ services:
       - 8080:8080 
     volumes:
       - ./orchestrator/config:/app/config
+    depends_on:
+      - otel-collector
   
   app-cep-input:
     build:
@@ -20,9 +40,5 @@ services:
       - 8090:8080
     volumes:
       - ./input/config:/app/config
-      
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    ports:
-      - "9411:9411"
+    depends_on:
+      - otel-collector
